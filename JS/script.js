@@ -2,29 +2,52 @@
 let numberOfFilms, 
     personalMovieDB = {};
 
-do {
-    numberOfFilms = '';
-    numberOfFilms = prompt('Сколько фильмов вы посмотрели?');
-    if (numberOfFilms === '' || numberOfFilms === null) {
-        alert('Ошибка. Попробуйте снова');
-        continue;
-    }
-    numberOfFilms = +numberOfFilms;
-    if (isNaN(numberOfFilms) || numberOfFilms < 0) {
-        alert('Ошибка. Попробуйте снова');
-        continue;
-    } else {
-        break;
-    }
-} while (true);
-
-if (numberOfFilms > 50) {
-    alert('Вы киноман')
-} else if (numberOfFilms < 10) {
-    alert('Просмотренно довольно мало фильмов')
-} else {
-    alert('Вы классический зритель')
+function start () {
+    let numberOfFilms = ''
+    do {
+        numberOfFilms = '';
+        numberOfFilms = prompt('Сколько фильмов вы посмотрели?');
+        if (numberOfFilms === '' || numberOfFilms === null) {
+            alert('Ошибка. Попробуйте снова');
+            continue;
+        }
+        numberOfFilms = +numberOfFilms;
+        if (isNaN(numberOfFilms) || numberOfFilms < 0) {
+            alert('Ошибка. Попробуйте снова');
+            continue;
+        } else {
+            break;
+        }
+    } while (true);
+    return +numberOfFilms;
 }
+
+function detectPersonalLevel(numberOfFilms) {
+    if (numberOfFilms > 50) {
+        alert('Вы киноман')
+    } else if (numberOfFilms < 10) {
+        alert('Просмотренно довольно мало фильмов')
+    } else {
+        alert('Вы классический зритель')
+    }
+}
+
+function showMyDB () {
+    if (!personalMovieDB.privat) {
+        console.log(personalMovieDB)
+    }    
+}
+
+function writeYourGenres () {
+    for (let i = 1; i <= 3; i++) {
+       personalMovieDB.genres.push(prompt(`Вашь любимый жанр номер ${i}`))
+    }
+}
+
+numberOfFilms = start(numberOfFilms)
+
+
+detectPersonalLevel(numberOfFilms)
 
 
 personalMovieDB = {
@@ -61,8 +84,7 @@ for (let i = 0; i < 2; i++) {
 }
 
 
-    
+writeYourGenres()
 
-
-console.log(personalMovieDB);
+showMyDB()
 
